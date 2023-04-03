@@ -32,7 +32,9 @@ class UserAdmin(DjangoUserAdmin):
                        'password2',
                        'user_type',
                        'company',
-                       'position')},
+                       'position',
+                       'email_is_verified'
+                       )},
          ),
     )
     ordering = ('email',)
