@@ -8,6 +8,8 @@ RUN pip3 install --no-cache-dir --upgrade -r /src/requirements.txt
 
 COPY . /code/
 
+RUN celery -A commercial_net_service worker --beat
+
 EXPOSE 8000
 
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

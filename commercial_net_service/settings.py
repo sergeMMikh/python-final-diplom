@@ -159,12 +159,12 @@ CELERY_RESULT_BACKEND = "django-db"
 
 # this allows you to schedule items in the Django admin.
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
+# CELERY_BEAT_SCHEDULE = {}
 
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Lisbon'
-# CELERY_BEAT_SCHEDULE = {}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

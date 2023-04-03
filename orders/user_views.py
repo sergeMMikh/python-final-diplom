@@ -116,7 +116,7 @@ class RegisterAccount(APIView):
                     send_email_4_verification.delay(
                         current_site=get_current_site(request).domain,
                         user_email=user.email,
-                        token=token,
+                        token=str(token),
                     )
                     return JsonResponse(
                         {'Status': True,
@@ -350,7 +350,7 @@ class ResetPasswordRequestToken(GenericAPIView):
                 # send a signal that the password token was created
                 # let whoever receives this signal handle sending
                 # the email for the password reset
-                send_email_4_reset_passw(user, token)
+                send_email_4_reset_passw.delay(user_email=user.email, token=token)
         # done
         return Response({'status': 'OK',
                          'Message': 'Check your email..'},

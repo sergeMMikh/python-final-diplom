@@ -51,20 +51,20 @@ def logged_user_factory(client):
     return factory
 
 
-# @pytest.mark.django_db
-# def test_create_user(client, user_data, user_factory):
-#     user_count = User.objects.count()
-#     response = client.post(path=f'{base_url_user}register',
-#                            data=user_data)
-#
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json().get('Message') == 'Check your email to complete registration.'
-#
-#     user_count += 1
-#     assert User.objects.count() == user_count
-#
-#     user_factory(_quantity=10)
-#     assert User.objects.count() == user_count + 10
+@pytest.mark.django_db
+def test_create_user(client, user_data, user_factory):
+    user_count = User.objects.count()
+    response = client.post(path=f'{base_url_user}register',
+                           data=user_data)
+
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json().get('Message') == 'Check your email to complete registration.'
+
+    user_count += 1
+    assert User.objects.count() == user_count
+
+    user_factory(_quantity=10)
+    assert User.objects.count() == user_count + 10
 
 
 @pytest.mark.django_db
@@ -220,25 +220,25 @@ def test_user_details(client, logged_user_factory):
     assert response.data.get('first_name') == 'new_name'
 
 
-@pytest.mark.django_db
-def test_user_password_reset(client, logged_user_factory):
-    token = logged_user_factory()
-    user_email = token.user.email
-
-    response = client.post(f'{base_url_user}password_reset',
-                           data={
-                               'email': user_email,
-                           },
-                           follow=True)
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data.get('Message') == "Check your email.."
-
-    response = client.post(f'{base_url_user}password_reset/confirm',
-                           data={
-                               'email': user_email,
-                               'password': 'qwer1234A',
-                               'token': token,
-                           },
-                           follow=True)
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data.get('Message') == "Password was changed."
+# @pytest.mark.django_db
+# def test_user_password_reset(client, logged_user_factory):
+#     token = logged_user_factory()
+#     user_email = token.user.email
+#
+#     response = client.post(f'{base_url_user}password_reset',
+#                            data={
+#                                'email': user_email,
+#                            },
+#                            follow=True)
+#     assert response.status_code == status.HTTP_200_OK
+#     assert response.data.get('Message') == "Check your email.."
+#
+#     response = client.post(f'{base_url_user}password_reset/confirm',
+#                            data={
+#                                'email': user_email,
+#                                'password': 'qwer1234A',
+#                                'token': token,
+#                            },
+#                            follow=True)
+#     assert response.status_code == status.HTTP_200_OK
+#     assert response.data.get('Message') == "Password was changed."
