@@ -68,6 +68,8 @@ jobs:
 
       - name: Run Migrations # run migrations to create table in side car db container
         run: python manage.py migrate
+      - name: Run celery worker
+        run: celery -A commercial_net_service worker --beat
       - name: Run Test # running tests
         run: pytest tests
 
