@@ -350,7 +350,7 @@ class ResetPasswordRequestToken(GenericAPIView):
                 # send a signal that the password token was created
                 # let whoever receives this signal handle sending
                 # the email for the password reset
-                send_email_4_reset_passw.delay(user_email=user.email, token=token)
+                send_email_4_reset_passw.delay(user_email=user.email, token=str(token))
         # done
         return Response({'status': 'OK',
                          'Message': 'Check your email..'},

@@ -220,25 +220,25 @@ def test_user_details(client, logged_user_factory):
     assert response.data.get('first_name') == 'new_name'
 
 
-# @pytest.mark.django_db
-# def test_user_password_reset(client, logged_user_factory):
-#     token = logged_user_factory()
-#     user_email = token.user.email
-#
-#     response = client.post(f'{base_url_user}password_reset',
-#                            data={
-#                                'email': user_email,
-#                            },
-#                            follow=True)
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.data.get('Message') == "Check your email.."
-#
-#     response = client.post(f'{base_url_user}password_reset/confirm',
-#                            data={
-#                                'email': user_email,
-#                                'password': 'qwer1234A',
-#                                'token': token,
-#                            },
-#                            follow=True)
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.data.get('Message') == "Password was changed."
+@pytest.mark.django_db
+def test_user_password_reset(client, logged_user_factory):
+    token = logged_user_factory()
+    user_email = token.user.email
+
+    response = client.post(f'{base_url_user}password_reset',
+                           data={
+                               'email': user_email,
+                           },
+                           follow=True)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data.get('Message') == "Check your email.."
+
+    response = client.post(f'{base_url_user}password_reset/confirm',
+                           data={
+                               'email': user_email,
+                               'password': 'qwer1234A',
+                               'token': token,
+                           },
+                           follow=True)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data.get('Message') == "Password was changed."
