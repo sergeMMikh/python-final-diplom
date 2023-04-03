@@ -1,7 +1,7 @@
 import requests
 from pprint import pprint
 
-url = 'http://127.0.0.1:8000/api/v1/'
+url = 'http://web-production-cde8.up.railway.app/api/v1/'
 TOKEN = None
 
 # Регистрация
@@ -10,8 +10,8 @@ request = requests.post(f'{url}user/register',
                         data={
                             "first_name": "magaz",
                             "last_name": "magaz62",
-                            "email": "magaz6@gmail.com",
-                            "password": "adminadmin",
+                            "email": "s.m.mih@mail.ru",
+                            "password": "s.m.mih@mail.ru",
                             "company": "Magaz6",
                             "position": "funcionario",
                             "user_type": "shop",
@@ -22,23 +22,23 @@ if request.status_code == 200:
     pprint(data_str)
 else:
     print(f'request: {request}')
-
-# Вход
-request = requests.post(f'{url}user/login',
-                        data={
-                            "email": "magaz6@gmail.com",
-                            "password": "adminadmin",
-                        },
-                        )
-if request.status_code == 200:
-    data_str = request.json()
-    print("request:")
-    pprint(data_str)
-
-    TOKEN = data_str.get('Token')
-    print(f'TOKEN: {TOKEN}')
-else:
-    print(f'request: {request}')
+#
+# # Вход
+# request = requests.post(f'{url}user/login',
+#                         data={
+#                             "email": "s.m.mih@mail.ru",
+#                             "password": "s.m.mih@mail.ru",
+#                         },
+#                         )
+# if request.status_code == 200:
+#     data_str = request.json()
+#     print("request:")
+#     pprint(data_str)
+#
+#     TOKEN = data_str.get('Token')
+#     print(f'TOKEN: {TOKEN}')
+# else:
+#     print(f'request: {request}')
 # #
 # # Обновление списка товаров
 # request = requests.post(f'{url}partner/update',
