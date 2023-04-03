@@ -14,9 +14,13 @@ on:
       - develop
 
 jobs:
-  health-check-job: # health check job for testing and code formatting check
-    runs-on: ubuntu-latest # os for running the job
+  runner-job:
+    # You must use a Linux environment when using service containers or container jobs
+    runs-on: ubuntu-latest
+
+    # Service containers to run with `runner-job`
     services:
+      # Label used to access the service container
       redis:
         # Docker Hub image
         image: redis
@@ -29,6 +33,9 @@ jobs:
         ports:
           # Maps port 6379 on service container to the host
           - 6379:6379
+  health-check-job: # health check job for testing and code formatting check
+    runs-on: ubuntu-latest # os for running the job
+    services:
       postgres: # we need a postgres docker image to be booted a side car service to run the tests that needs a db
         image: postgres
         env: # the environment variable must match with app/settings.py if block of DATBASES variable otherwise test will fail due to connectivity issue.
