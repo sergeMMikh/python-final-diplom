@@ -1,6 +1,7 @@
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
-from rest_framework.authtoken.models import Token
+# from django.contrib.sites.shortcuts import get_current_site
+# from django.core.mail import EmailMessage
+# from rest_framework.authtoken.models import Token
+from orders.tasks import send_email
 
 
 def send_email_4_verification(current_site: str,
