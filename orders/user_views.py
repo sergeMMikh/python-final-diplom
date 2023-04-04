@@ -16,7 +16,6 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from orders.tasks import send_email_4_verification
 from orders.serializers import UserSerializer, ContactSerializer
 from orders.models import User, ConfirmEmailToken, Contact
 from orders.permissions import IsOwner
@@ -33,7 +32,7 @@ from rest_framework import exceptions
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import get_password_validators
 from django.conf import settings
-from orders.tasks import send_email_4_reset_passw
+from orders.send_email import send_email_4_verification, send_email_4_reset_passw
 from django.contrib.sites.shortcuts import get_current_site
 
 
@@ -113,7 +112,7 @@ class RegisterAccount(APIView):
                     user.save()
                     # verification of email
                     token, _ = Token.objects.get_or_create(user=user)
-                    send_email_4_verification.delay(
+                    send_email_4_verification(
                         current_site=get_current_site(request).domain,
                         user_email=user.email,
                         token=str(token),
@@ -350,7 +349,7 @@ class ResetPasswordRequestToken(GenericAPIView):
                 # send a signal that the password token was created
                 # let whoever receives this signal handle sending
                 # the email for the password reset
-                send_email_4_reset_passw.delay(user_email=user.email, token=str(token))
+                send_email_4_reset_passw(user_email=user.email, token=str(token))
         # done
         return Response({'status': 'OK',
                          'Message': 'Check your email..'},

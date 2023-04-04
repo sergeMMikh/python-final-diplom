@@ -3,26 +3,23 @@ from django.core.mail import EmailMessage
 from rest_framework.authtoken.models import Token
 
 
-def send_email_4_verification(request, user):
-    current_site = get_current_site(request)
-    token, _ = Token.objects.get_or_create(user=user)
+def send_email_4_verification(current_site: str,
+                              user_email: str,
+                              token: str) -> None:
     message = f"Please follow this link to confirm your password: \n " \
-              f"http://{current_site.domain}/api/v1/user/verify_email/{token}"
-    email = EmailMessage(
-        'Verify email',
-        message,
-        to=[user.email],
-    )
-    email.send()
+              f"http://{current_site}/api/v1/user/verify_email/" \
+              f"{token}"
+    send_email.delay(title='Verify email',
+                     message=message,
+                     from_='django_app',
+                     to=user_email)
 
 
-def send_email_4_reset_passw(user, token):
-    token, _ = Token.objects.get_or_create(user=user)
+def send_email_4_reset_passw(user_email: str,
+                             token: str) -> None:
     message = f"Please use this token for you request : \n " \
               f"{token}"
-    email = EmailMessage(
-        'reset_password',
-        message,
-        to=[user.email],
-    )
-    email.send()
+    send_email.delay(title='reset_password',
+                     message=message,
+                     from_='django_app',
+                     to=user_email)
