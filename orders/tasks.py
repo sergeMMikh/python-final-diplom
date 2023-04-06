@@ -1,16 +1,17 @@
 # import random
 from celery import shared_task
 # from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 
 @shared_task(serializer='json')
 def send_email(title,
                message,
                to):
-    email = EmailMessage(title,
-                         message,
-                         to=[to])
+    print(args)
+    email = EmailMultiAlternatives(title,
+                                   message,
+                                   to=[to])
     email.send()
 
 # def send_email_4_verification(current_site: str,
