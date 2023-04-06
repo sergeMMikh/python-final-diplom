@@ -21,4 +21,5 @@ def send_email_4_reset_passw(user_email: str,
               f"{token}"
     send_email.delay(title='reset_password',
                      message=message,
+                     from_='django_app',
                      to=user_email)
