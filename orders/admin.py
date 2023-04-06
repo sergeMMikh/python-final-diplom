@@ -20,7 +20,8 @@ class UserAdmin(DjangoUserAdmin):
     search_fields = ['email', 'first_name', 'last_name',
                      'is_staff', 'is_active']
     list_display = ['email', 'is_staff', 'is_active',
-                    'user_type', 'company', 'position']
+                    'user_type', 'company', 'position',
+                    'email_is_verified']
     list_filter = ['is_staff', 'is_active']
     add_fieldsets = (
         (None, {
