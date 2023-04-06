@@ -5,13 +5,9 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 
 @shared_task(serializer='json')
-def send_email(title,
-               message,
-               to):
+def send_email(*args):
     print(args)
-    email = EmailMultiAlternatives(title,
-                                   message,
-                                   to=[to])
+    email = EmailMultiAlternatives(args)
     email.send()
 
 # def send_email_4_verification(current_site: str,

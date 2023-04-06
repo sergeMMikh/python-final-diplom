@@ -11,6 +11,7 @@ def send_email_4_verification(current_site: str,
               f"{token}"
     send_email.delay(title='Verify email',
                      message=message,
+                     from_='django_app',
                      to=user_email)
 
 
