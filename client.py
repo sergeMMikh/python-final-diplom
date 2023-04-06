@@ -1,30 +1,29 @@
 import requests
 from pprint import pprint
 
-# url = 'http://web-production-cde8.up.railway.app/api/v1/'
-url = 'http://127.0.0.1:8000/api/v1/'
-TOKEN = "3cde19abaea7d2ff12d68ad3f7ca797eb61007d8"
+url = 'http://web-production-cde8.up.railway.app/api/v1/'
+TOKEN = None
 
 # Регистрация
 
-# request = requests.post(f'{url}user/register',
-#                         data={
-#                             "first_name": "magaz",
-#                             "last_name": "magaz62",
-#                             "email": "s.m.mih@mail.ru",
-#                             "password": "s.m.mih@mail.ru",
-#                             "company": "Magaz6",
-#                             "position": "funcionario",
-#                             "user_type": "shop",
-#                         })
-# if request.status_code == 200:
-#     data_str = request.json()
-#     print("request:")
-#     pprint(data_str)
-# else:
-#     print(f'request: {request}')
+request = requests.post(f'{url}user/register',
+                        data={
+                            "first_name": "magaz",
+                            "last_name": "magaz62",
+                            "email": "s.m.mih@mail.ru",
+                            "password": "s.m.mih@mail.ru",
+                            "company": "Magaz6",
+                            "position": "funcionario",
+                            "user_type": "shop",
+                        })
+if request.status_code == 200:
+    data_str = request.json()
+    print("request:")
+    pprint(data_str)
+else:
+    print(f'request: {request}')
 #
-# Вход
+# # Вход
 # request = requests.post(f'{url}user/login',
 #                         data={
 #                             "email": "s.m.mih@mail.ru",
@@ -40,20 +39,20 @@ TOKEN = "3cde19abaea7d2ff12d68ad3f7ca797eb61007d8"
 #     print(f'TOKEN: {TOKEN}')
 # else:
 #     print(f'request: {request}')
-#
-# Обновление списка товаров
-request = requests.post(f'{url}partner/update',
-                        headers={
-                            'Authorization': f'Token {TOKEN}',
-                        },
-                        data={"url":
-                                  "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1K30Oeujse-05WCEGEFZC6oOX4Q_kACPy"},
-                        )
-print("post:")
-if request.status_code == 200:
-    pprint(request.json())
-else:
-    print(f'request: {request}')
+# #
+# # Обновление списка товаров
+# request = requests.post(f'{url}partner/update',
+#                         headers={
+#                             'Authorization': f'Token {TOKEN}',
+#                         },
+#                         data={"url":
+#                                   "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1K30Oeujse-05WCEGEFZC6oOX4Q_kACPy"},
+#                         )
+# print("post:")
+# if request.status_code == 200:
+#     pprint(request.json())
+# else:
+#     print(f'request: {request}')
 # {"url": "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1K30Oeujse-05WCEGEFZC6oOX4Q_kACPy"}
 #
 # # Список товаров
