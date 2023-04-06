@@ -1,1 +1,1 @@
-web: gunicorn commercial_net_service.wsgi:application
+web: python manage.py migrate && celery -A commercial_net_service worker --detach --beat && gunicorn commercial_net_service.wsgi:application
