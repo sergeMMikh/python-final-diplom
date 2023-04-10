@@ -6,28 +6,28 @@ TOKEN = None
 
 # Регистрация
 
-request = requests.post(f'{url}user/register',
-                        data={
-                            "first_name": "magaz",
-                            "last_name": "magaz7",
-                            "email": "magaz7@gmail.com",
-                            "password": "adminadmin",
-                            "company": "Magaz7",
-                            "position": "funcionario",
-                            "user_type": "shop",
-                        })
-if request.status_code == 200:
-    data_str = request.json()
-    print("request:")
-    pprint(data_str)
-else:
-    print(f'request: {request}')
+# request = requests.post(f'{url}user/register',
+#                         data={
+#                             "first_name": "magaz",
+#                             "last_name": "magaz7",
+#                             "email": "s.m.mih@mail.ru",
+#                             "password": "adminadmin122",
+#                             "company": "Magaz7",
+#                             "position": "funcionario",
+#                             "user_type": "shop",
+#                         })
+# if request.status_code == 200:
+#     data_str = request.json()
+#     print("request:")
+#     pprint(data_str)
+# else:
+#     print(f'request: {request}')
 
 # Вход
 request = requests.post(f'{url}user/login',
                         data={
-                            "email": "magaz6@gmail.com",
-                            "password": "adminadmin",
+                            "email": "s.m.mih@mail.ru",
+                            "password": "adminadmin122",
                         },
                         )
 if request.status_code == 200:
