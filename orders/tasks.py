@@ -30,3 +30,15 @@ def send_email_4_reset_passw(user_email, token):
         to=[user_email],
     )
     email.send()
+
+
+@shared_task(serializer='json')
+def send_email(user_email,
+               sabject,
+               message):
+    email = EmailMessage(
+        sabject,
+        message,
+        to=[user_email],
+    )
+    email.send()

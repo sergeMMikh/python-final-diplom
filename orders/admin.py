@@ -33,7 +33,7 @@ class UserAdmin(DjangoUserAdmin):
                        'user_type',
                        'company',
                        'position',
-                       'email_is_verified'
+                       'email_is_verified',
                        )},
          ),
     )

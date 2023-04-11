@@ -26,8 +26,8 @@ TOKEN = None
 # Вход
 request = requests.post(f'{url}user/login',
                         data={
-                            "email": "s.m.mih@mail.ru",
-                            "password": "adminadmin122",
+                            "email": "shop_cv@mail.ru",
+                            "password": "qwer2345",
                         },
                         )
 if request.status_code == 200:
@@ -41,22 +41,22 @@ else:
 
     print(f'request: {request.status_code}')
     data_str = request.raw
-# #
-# # Обновление списка товаров
-# request = requests.post(f'{url}partner/update',
-#                         headers={
-#                             'Authorization': f'Token {TOKEN}',
-#                         },
-#                         data={"url":
-#                                   "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1K30Oeujse-05WCEGEFZC6oOX4Q_kACPy"},
-#                         )
-# print("post:")
-# if request.status_code == 200:
-#     pprint(request.json())
-# else:
-#     print(f'request: {request}')
-# {"url": "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1K30Oeujse-05WCEGEFZC6oOX4Q_kACPy"}
 #
+# Обновление списка товаров
+request = requests.post(f'{url}partner/update',
+                        headers={
+                            'Authorization': f'Token {TOKEN}',
+                        },
+                        data={"url":
+                                  "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1K30Oeujse-05WCEGEFZC6oOX4Q_kACPy"},
+                        )
+print("post:")
+if request.status_code == 200:
+    pprint(request.json())
+else:
+    print(f'request: {request}')
+{"url": "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1K30Oeujse-05WCEGEFZC6oOX4Q_kACPy"}
+
 # # Список товаров
 # request = requests.get(f'{url}/api/v1/products/list',
 #                        headers={
