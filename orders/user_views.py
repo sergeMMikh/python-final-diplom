@@ -113,7 +113,8 @@ class RegisterAccount(APIView):
                     user.save()
                     # verification of email
                     token, _ = Token.objects.get_or_create(user=user)
-                    send_email_4_verification.delay(
+                    # send_email_4_verification.delay(
+                    send_email_4_verification(
                         current_site=get_current_site(request).domain,
                         user_email=user.email,
                         token=str(token),
@@ -350,7 +351,8 @@ class ResetPasswordRequestToken(GenericAPIView):
                 # send a signal that the password token was created
                 # let whoever receives this signal handle sending
                 # the email for the password reset
-                send_email_4_reset_passw.delay(user_email=user.email, token=str(token))
+                # send_email_4_reset_passw.delay(user_email=user.email, token=str(token))
+                send_email_4_reset_passw(user_email=user.email, token=str(token))
         # done
         return Response({'status': 'OK',
                          'Message': 'Check your email..'},
