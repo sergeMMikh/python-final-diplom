@@ -5,7 +5,7 @@ from orders.models import Product, Shop, ProductInfo, Parameter, \
 from django.core.validators import URLValidator
 from django.http import JsonResponse
 from requests import get
-
+from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
@@ -45,7 +45,7 @@ class PartnerUpdate(APIView):
             print('тип пользователя не "магазин"')
             return JsonResponse(
                 {'Status': False, 'Error': 'Только для магазинов'},
-                status=403)
+                status=status.HTTP_403_FORBIDDEN)
 
         url = request.data.get('url')
         print(f'url: {url}')
@@ -99,7 +99,9 @@ class PartnerUpdate(APIView):
                                                         parameter_id=parameter_object.id,
                                                         value=value)
 
-                return JsonResponse({'Status': True})
+                return JsonResponse(
+                    {'Status': True},
+                status=status.HTTP_200_OK)
 
         print('Не указаны все необходимые аргументы')
         return JsonResponse(
@@ -121,22 +123,25 @@ class PartnerState(APIView):
         if request.user.type != 'shop':
             return JsonResponse(
                 {'Status': False, 'Error': 'Только для магазинов'},
-                status=403)
+                status=status.HTTP_403_FORBIDDEN)
 
         shop = request.user.shop
         serializer = ShopSerializer(shop)
-        return Response(serializer.data)
+        return Response(serializer.data,
+                        status=status.HTTP_200_OK)
 
     # изменить текущий статус
     def post(self, request, *args, **kwargs):
 
         if not request.user.is_authenticated:
-            return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
+            return JsonResponse(
+                {'Status': False, 'Error': 'Log in required'},
+                status=status.HTTP_403_FORBIDDEN)
 
         if request.user.user_type != 'shop':
             return JsonResponse(
                 {'Status': False, 'Error': 'Только для магазинов'},
-                status=403)
+                status=status.HTTP_403_FORBIDDEN)
         state = request.data.get('state')
         if state:
             try:
@@ -148,4 +153,6 @@ class PartnerState(APIView):
                 return JsonResponse({'Status': False, 'Errors': str(error)})
 
         return JsonResponse(
-            {'Status': False, 'Errors': 'Не указаны все необходимые аргументы'})
+            {'Status': False,
+             'Errors': 'Не указаны все необходимые аргументы'},
+        status=status.HTTP_400_BAD_REQUEST)

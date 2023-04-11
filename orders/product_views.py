@@ -1,21 +1,10 @@
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
-
 from orders.models import Product, Shop, ProductInfo, Category
-# from django.core.validators import URLValidator
 from django.db.models import Q
-# from django.http import JsonResponse
-# from requests import get
-
-# from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
-
 from rest_framework.views import APIView
-
-# from yaml import Loader, load as load_yaml
-
-# from pprint import pprint
 from orders.serializers import ProductSerializer, ShopSerializer, ProductViewSerializer, \
     SingleProductViewSerializer, CategorySerializer
 
@@ -63,7 +52,8 @@ class ProductsView(APIView):
                                           category__name=category)
 
         serializer = ProductViewSerializer(products, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data,
+                        status=status.HTTP_200_OK)
 
 
 class SingleProductView(APIView):
@@ -81,7 +71,8 @@ class SingleProductView(APIView):
 
         serializer = SingleProductViewSerializer(queryset, many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data,
+                        status=status.HTTP_200_OK)
 
 
 class ProductInfoViewSet(APIView):
@@ -123,4 +114,5 @@ class ProductInfoViewSet(APIView):
 
         serializer = SingleProductViewSerializer(queryset, many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data,
+                        status=status.HTTP_200_OK)

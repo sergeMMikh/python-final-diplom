@@ -1,21 +1,15 @@
-# from pprint import pprint
-
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
-# from django.contrib.contenttypes.models import ContentType
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
-
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny, IsAuthenticated
-
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-
 from orders.tasks import send_email_4_verification
 from orders.serializers import UserSerializer, ContactSerializer
 from orders.models import User, ConfirmEmailToken, Contact
