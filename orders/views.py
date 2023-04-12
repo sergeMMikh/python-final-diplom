@@ -1,4 +1,3 @@
-# from sqlite3 import IntegrityError
 from django.db.utils import IntegrityError
 from orders.models import Order
 from django.db.models import F, Sum
@@ -9,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from orders.serializers import OrderSerializer
 from orders.tasks import send_email
-
+from rest_framework import status
 
 class OrderView(APIView):
     """
@@ -51,7 +50,8 @@ class OrderView(APIView):
                 ))).distinct()
 
         serializer = OrderSerializer(order, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data,
+                        status=status.HTTP_200_OK)
 
     # разместить заказ из корзины
     def post(self, request, *args, **kwargs):
@@ -59,7 +59,7 @@ class OrderView(APIView):
         if not request.user.is_authenticated:
             return JsonResponse({'Status': False,
                                  'Error': 'Log in required'},
-                                status=403)
+                                status=status.HTTP_403_FORBIDDEN)
 
         if {'id', 'contact'}.issubset(request.data):
             if request.data['id'].isdigit():
@@ -90,8 +90,11 @@ class OrderView(APIView):
                                    message=f"{serializer.data}")
                         # new_order.send(sender=self.__class__,
                         # user_id=request.user.id)
-                        return JsonResponse({'Status': True})
+                        return JsonResponse(
+                            {'Status': True},
+                            status=status.HTTP_200_OK
+                        )
 
         return JsonResponse({'Status': False,
                              'Errors': 'Не указаны все необходимые аргументы'},
-                            status=400)
+                            status=status.HTTP_400_BAD_REQUEST)

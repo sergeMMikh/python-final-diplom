@@ -122,6 +122,9 @@ class User(AbstractUser):
 
 
 class Shop(models.Model):
+    """
+    Модель магазина
+    """
     name = models.CharField(max_length=120, verbose_name="Название")
     url = models.URLField(verbose_name="Ссылка", null=True, blank=True)
     user = models.OneToOneField(User, verbose_name='Пользователь',
@@ -140,6 +143,9 @@ class Shop(models.Model):
 
 
 class Category(models.Model):
+    """
+    Модель категории продукта
+    """
     name = models.CharField(max_length=55,
                             verbose_name="Название")
     shops = models.ManyToManyField(Shop,
@@ -157,6 +163,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Модель продукта
+    """
     name = models.CharField(max_length=55, verbose_name="Название")
     category = models.ForeignKey(Category,
                                  verbose_name='Категория',
@@ -174,6 +183,10 @@ class Product(models.Model):
 
 
 class ProductInfo(models.Model):
+    """
+    Модель информаци  продукта
+    """
+
     name = models.CharField(max_length=120, verbose_name="Название")
     external_id = models.PositiveIntegerField(verbose_name='Внешний ключ')
     shop = models.ForeignKey(Shop, verbose_name='Магазин',
@@ -200,6 +213,10 @@ class ProductInfo(models.Model):
 
 
 class Parameter(models.Model):
+    """
+    Модель параметра  продукта
+    """
+
     name = models.CharField(max_length=60,
                             verbose_name="Название")
 
@@ -213,6 +230,10 @@ class Parameter(models.Model):
 
 
 class ProductParameter(models.Model):
+    """
+    Модель параметров  продукта
+    """
+
     product_info = models.ForeignKey(ProductInfo,
                                      verbose_name='Информация о продукте',
                                      related_name='product_parameters',
@@ -236,6 +257,10 @@ class ProductParameter(models.Model):
 
 
 class Order(models.Model):
+    """
+    Модель заказа
+    """
+
     user = models.ForeignKey(User,
                              verbose_name='Пользователь',
                              on_delete=models.CASCADE)
@@ -256,6 +281,10 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    """
+    Модель единицы заказа
+    """
+
     order = models.ForeignKey(Order,
                               verbose_name='Заказ',
                               related_name='ordered_items',
@@ -280,6 +309,10 @@ class OrderItem(models.Model):
 
 
 class Contact(models.Model):
+    """
+    Модель контакта
+    """
+
     user = models.ForeignKey(User, verbose_name='Пользователь',
                              related_name='contacts', blank=True,
                              on_delete=models.CASCADE)

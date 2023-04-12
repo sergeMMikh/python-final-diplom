@@ -101,12 +101,13 @@ class PartnerUpdate(APIView):
 
                 return JsonResponse(
                     {'Status': True},
-                status=status.HTTP_200_OK)
+                    status=status.HTTP_200_OK)
 
         print('Не указаны все необходимые аргументы')
         return JsonResponse(
             {'Status': False,
-             'Errors': 'Не указаны все необходимые аргументы'})
+             'Errors': 'Не указаны все необходимые аргументы'},
+            status=status.HTTP_400_BAD_REQUEST)
 
 
 class PartnerState(APIView):
@@ -150,9 +151,11 @@ class PartnerState(APIView):
                 ).update(state=strtobool(state))
                 return JsonResponse({'Status': True})
             except ValueError as error:
-                return JsonResponse({'Status': False, 'Errors': str(error)})
+                return JsonResponse({'Status': False,
+                                     'Errors': str(error)},
+                                    status=status.HTTP_400_BAD_REQUEST)
 
         return JsonResponse(
             {'Status': False,
              'Errors': 'Не указаны все необходимые аргументы'},
-        status=status.HTTP_400_BAD_REQUEST)
+            status=status.HTTP_400_BAD_REQUEST)

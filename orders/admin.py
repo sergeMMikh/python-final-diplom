@@ -1,7 +1,5 @@
 from django.contrib.admin import ModelAdmin, register
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
-# from django.utils.translation import gettext_lazy as _
-# from django.contrib.auth import get_user_model
 
 from .forms import UserAdminChangeForm, UserAdminCreationForm
 from .models import ConfirmEmailToken, User

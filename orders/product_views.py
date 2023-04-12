@@ -42,6 +42,9 @@ class ShopView(ListAPIView):
 
 
 class ProductsView(APIView):
+    """
+    Получение списка товаров по категории и магазину
+    """
     def get(self, request):
         category = request.data.get('category')
         shop = request.data.get('shop')

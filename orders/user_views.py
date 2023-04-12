@@ -200,6 +200,9 @@ class UserEmailVerify(APIView):
 
 
 class EditUser(APIView):
+    """
+    Для обработки данных пользователя
+    """
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = [IsAuthenticated]
@@ -225,6 +228,10 @@ class EditUser(APIView):
 
 
 class ContactViewSet(ModelViewSet):
+    """
+    Для работы с контактами
+    """
+
     serializer_class = ContactSerializer
     queryset = Contact.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
