@@ -10,8 +10,8 @@ TOKEN = None
 #                         data={
 #                             "first_name": "magaz",
 #                             "last_name": "magaz7",
-#                             "email": "s.m.mih@mail.ru",
-#                             "password": "adminadmin122",
+#                             "email": "shop_cv@mail.ru",
+#                             "password": "qwer2345",
 #                             "company": "Magaz7",
 #                             "position": "funcionario",
 #                             "user_type": "shop",

@@ -76,20 +76,28 @@ class BasketView(APIView):
                             serializer.save()
                         except IntegrityError:
                             return JsonResponse({'Status': False,
-                                                 'Errors': 'Order alredy exists'})
+                                                 'Errors': 'Order alredy exists'},
+                                                status=status.HTTP_400_BAD_REQUEST)
                         except Exception as error:
                             print(f"Error: {str(error)}")
-                            return JsonResponse({'Status': False, 'Errors': str(error)})
+                            return JsonResponse({'Status': False,
+                                                 'Errors': str(error)},
+                                                status=status.HTTP_400_BAD_REQUEST)
                         else:
                             objects_created += 1
 
                     else:
-                        JsonResponse({'Status': False, 'Errors': serializer.errors})
+                        JsonResponse({'Status': False,
+                                      'Errors': serializer.errors})
 
-                return JsonResponse({'Status': True, 'Создано объектов': objects_created})
+                return JsonResponse(
+                    {'Status': True,
+                     'Создано объектов': objects_created},
+                    status=status.HTTP_201_CREATED)
         return JsonResponse(
             {'Status': False,
-             'Errors': 'Не указаны все необходимые аргументы'})
+             'Errors': 'Не указаны все необходимые аргументы'},
+        status=status.HTTP_400_BAD_REQUEST)
 
     # удалить товары из корзины
     def delete(self, request, *args, **kwargs):
