@@ -97,7 +97,7 @@ class RegisterAccount(APIView):
                     status=status.HTTP_400_BAD_REQUEST)
             else:
                 # проверяем данные для уникальности имени пользователя
-                request.data._mutable = True
+                # request.data._mutable = True
                 request.data.update({})
                 user_serializer = UserSerializer(data=request.data)
                 if user_serializer.is_valid():
