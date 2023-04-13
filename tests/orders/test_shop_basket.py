@@ -22,17 +22,22 @@ def user_4_shop_factory(client):
 
     return factory
 
+
 @pytest.fixture()
 def shop_factory():
     def factory(*args, **kwargs):
         return baker.make(Shop, *args, **kwargs)
+
     return factory
+
 
 @pytest.fixture()
 def category_factory():
     def factory(*args, **kwargs):
         return baker.make(Category, *args, **kwargs)
+
     return factory
+
 
 @pytest.fixture()
 def product_factory(shop_factory):
@@ -42,13 +47,14 @@ def product_factory(shop_factory):
         product = Product.objects.create(
             name=faker.name(),
             category=baker.make(Category,
-                                *args, **kwargs)
+                                *args, **kwargs),
         )
         baker.make(ProductInfo,
                    shop=shop,
                    product=product,
                    *args, **kwargs)
         return product
+
     return factory
 
 
@@ -88,6 +94,7 @@ def test_shops_list(client, shop_factory):
     response = client.get(path=f'{base_url}shops')
 
     assert response.data.get('count') == shops_count + 1
+
 
 @pytest.mark.django_db
 def test_basket(client,

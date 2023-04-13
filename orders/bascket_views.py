@@ -97,7 +97,7 @@ class BasketView(APIView):
         return JsonResponse(
             {'Status': False,
              'Errors': 'Не указаны все необходимые аргументы'},
-        status=status.HTTP_400_BAD_REQUEST)
+            status=status.HTTP_400_BAD_REQUEST)
 
     # удалить товары из корзины
     def delete(self, request, *args, **kwargs):

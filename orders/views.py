@@ -10,6 +10,7 @@ from orders.serializers import OrderSerializer
 from orders.tasks import send_email
 from rest_framework import status
 
+
 class OrderView(APIView):
     """
     Класс для получения и размешения заказов пользователями
@@ -92,7 +93,7 @@ class OrderView(APIView):
                         # user_id=request.user.id)
                         return JsonResponse(
                             {'Status': True},
-                            status=status.HTTP_200_OK
+                            status=status.HTTP_200_OK,
                         )
 
         return JsonResponse({'Status': False,
