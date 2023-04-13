@@ -10,7 +10,7 @@ from orders.user_views import LoginAccount, RegisterAccount, \
     ResetPasswordRequestToken, ResetPasswordConfirm
 from orders.partner_views import PartnerUpdate, PartnerState
 
-from orders.views import OrderView
+from orders.order_view import OrderView
 
 app_name = 'orders'
 router = DefaultRouter()
