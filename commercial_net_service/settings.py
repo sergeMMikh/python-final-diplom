@@ -193,5 +193,6 @@ EMAIL_PORT = os.getenv('EM_PORT')
 EMAIL_USE_TLS = os.getenv('EM_USE_TLS')
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

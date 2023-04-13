@@ -1,1 +1,1 @@
-web: sh railway.sh
+web: gunicorn 'commercial_net_service.wsgi'
