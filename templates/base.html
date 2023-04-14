@@ -6,18 +6,49 @@
 </title>
 </head>
 <body>
-<p>Дипломная работа к профессии Python-разработчик «API Сервис заказа товаров для розничных сетей».</p>
-<h1>Список предлагаемых опций:</h1>
-<p>Административная панель для суперпользователей,
-    <a href="{% url 'admin:index' %}">/admin/.</a>
-    <br>
-    <br>
-    <a>Ссылка для работы с API: https://web-production-cde8.up.railway.app/api/v1/</a>
-    <br>
-    <br>
-    <a>Для регистрации пользоватеей следует отправить запрос по адресу:
-    https://web-production-cde8.up.railway.app/api/v1/user/register.</a>
+<h1>Дипломная работа к профессии Python-разработчик</h1>
+<h1>«API Сервис заказа товаров для розничных сетей».</h1>
+<h2>Список предлагаемых опций</h2>
 
+<h3>Для пользователей:</h3>
+
+<p> - Регистрация пользователя с последующим подтверждением электронного адреса
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/user/register">/api/v1/user/registe.</a></p>
+<p> - Аутентификация пользователя
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/user/user/login">/api/v1/user/login.</a></p>
+<p> - Восстановление пароля с использованием электронного адреса пользователя
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/user/user/password_reset">/api/v1/user/password_reset.</a></p>
+<p> - Создание и редактирование контактов
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/user/contact">/api/v1/user/contact.</a></p>
+<p> - Редактирование данных пользователя
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/user/user/details">/api/v1/user/details.</a></p>
+<br>
+<h3>Для покупателей:</h3>
+<p> - Получение списка магазинов
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/shops">/api/v1/shops.</a></p>
+<p> - Поиск товаров по идентификатору магазина и категории
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/products">/api/v1/products?shop_id&category_id.</a></p>
+<p> - Создание корзины с покупками и редактирование её содержимого
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/basket">/api/v1/basket.</a></p>
+<p> - Получение списка заказов и возможность разместить заказ
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/order">/api/v1/order.</a></p>
+<br>
+<h3>Для магазинов:</h3>
+<p> - Обновление прайса
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/partner/update">/api/v1/partner/update.</a></p>
+<p> - Полчение и редактирование статуса магазина
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/partner/state">/api/v1/partner/state.</a></p>
+<p> - Полчение магазином списка заказов
+    <a href=" https://web-production-cde8.up.railway.app/api/v1/partner/orders">/api/v1/partner/orders.</a></p>
+<br>
+
+<h3>Для суперпользователей</h3>
+<p> - Административная панель
+    <a href="{% url 'admin:index' %}">/admin/.</a></p>
+<br>
+
+<p>Список запросов к проложению соответствует предложенной в задании к дипломной работе </p>
+    <a href="https://documenter.getpostman.com/view/5037826/SVfJUrSc">Документации по запросам в PostMan.</a>
 
 
 
