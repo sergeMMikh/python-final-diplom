@@ -22,6 +22,7 @@ from commercial_net_service.spectacular.urls import urlpatterns as doc_urls
 urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('api/v1/', include('orders.api_urls', namespace='orders')),
     path('schema/',
          SpectacularAPIView.as_view(),

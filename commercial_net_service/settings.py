@@ -46,8 +46,18 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.vk',
+    # 'allauth.socialaccount.providers.yandex',
+    'allauth.socialaccount.providers.github',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -63,6 +73,30 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'drf_spectacular',
 ]
+
+SITE_ID = 1
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online'
+        },
+    },
+
+    'github': {
+        # 'GITHUB_URL': 'https://github.com/sergeMMikh',
+        'SCOPE': [
+            'user',
+            'repo',
+            'road:org'
+        ],
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -91,6 +125,14 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'commercial_net_service.wsgi.application'
