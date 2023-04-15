@@ -11,7 +11,6 @@ from orders.user_views import LoginAccount, RegisterAccount, \
 from orders.partner_views import PartnerUpdate, PartnerState
 from orders.order_view import OrderView
 
-
 app_name = 'orders'
 router = DefaultRouter()
 router.register(r'user/contact', ContactViewSet, basename='user-contact')
@@ -47,5 +46,3 @@ urlpatterns = [
                   path('partner/orders', OrderView.as_view(), name='partner-orders'),
 
               ] + router.urls
-
-

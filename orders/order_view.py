@@ -31,8 +31,11 @@ class OrderView(APIView):
                 'ordered_items__product_info__product__category',
                 'ordered_items__product_info__product_parameters__parameter',
             ).annotate(
-                total_sum=Sum(F('ordered_items__quantity') *
-                              F('ordered_items__product_info__price')),
+                total_sum=Sum(F(
+                    'ordered_items__quantity',
+                ) * F(
+                    'ordered_items__product_info__price',
+                )),
             ).distinct()
 
         else:
