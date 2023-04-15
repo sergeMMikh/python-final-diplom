@@ -9,8 +9,8 @@ from orders.user_views import LoginAccount, RegisterAccount, \
     ConfirmAccount, ContactViewSet, EditUser, UserEmailVerify, \
     ResetPasswordRequestToken, ResetPasswordConfirm
 from orders.partner_views import PartnerUpdate, PartnerState
-
 from orders.order_view import OrderView
+
 
 app_name = 'orders'
 router = DefaultRouter()
@@ -47,3 +47,5 @@ urlpatterns = [
                   path('partner/orders', OrderView.as_view(), name='partner-orders'),
 
               ] + router.urls
+
+

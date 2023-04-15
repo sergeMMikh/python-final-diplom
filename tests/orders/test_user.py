@@ -57,7 +57,7 @@ def test_create_user(client, user_data, user_factory):
     response = client.post(path=f'{base_url_user}register',
                            data=user_data)
 
-    assert response.status_code == status.HTTP_200_OK
+    assert response.status_code == status.HTTP_201_CREATED
     assert response.json().get('Message') == 'Check your email to complete registration.'
 
     user_count += 1

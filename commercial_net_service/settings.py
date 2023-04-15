@@ -59,6 +59,11 @@ INSTALLED_APPS = [
     'orders',
 ]
 
+# linked after all apps
+INSTALLED_APPS += [
+    'drf_spectacular',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -140,14 +145,15 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.ScopedRateThrottle',
         'rest_framework.throttling.AnonRateThrottle',
     ],
-    # 'DEFAULT_THROTTLE_RATES': {
-    #     'anon': '5/day',  # limits the rate of unauthorised users = limit registrations per day from one source
-    #     'orders': '10/day',  # limits the byers' rates
-    #     'price-list': '20/day',  # limits shops' rates
-    # },
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '5/day',  # limits the rate of unauthorised users = limit registrations per day from one source
+        'orders': '10/day',  # limits the byers' rates
+        'price-list': '20/day',  # limits shops' rates
+    },
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
     # 'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 
 }
 
@@ -196,3 +202,23 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Commercial net service API',
+    'DESCRIPTION': 'Commercial net service.',
+    'VERSION': '1.0.0',
+    # 'SERVE_PERMISSIONS': [
+    #   'rest_framework.permissions.IsAuthenticated',
+    # ],
+    # 'SERVE_AUTHENTICATION': [
+    #     'rest_framework.authentication.BasicAuthentication',
+    # ],
+    # 'SWAGGER_UI_SETTINGS': {
+    #     'DeepLinking': True,
+    #     'DisplayOperationId': True
+    # },
+    # 'COMPONENT_SPLIT_REQUEST': True,
+    # 'SORT_OPERATIONS': False,
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}

@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from orders.views import home_view
+from drf_spectacular.views import SpectacularAPIView
+from commercial_net_service.spectacular.urls import urlpatterns as doc_urls
 
 urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     path('api/v1/', include('orders.api_urls', namespace='orders')),
+    path('schema/',
+         SpectacularAPIView.as_view(),
+         name='schema'),
 ]
+urlpatterns += doc_urls

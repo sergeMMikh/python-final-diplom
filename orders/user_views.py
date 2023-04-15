@@ -117,7 +117,7 @@ class RegisterAccount(APIView):
                         {'Status': True,
                          'Message':
                              'Check your email to complete registration.'},
-                        status=status.HTTP_200_OK)
+                        status=status.HTTP_201_CREATED)
                     # return JsonResponse({'Status': True},
                     #                     status=status.HTTP_201_CREATED)
                 else:
