@@ -98,9 +98,12 @@ SOCIALACCOUNT_PROVIDERS = {
     # }
     'vk': {
         'APP': {
-            'client_id': os.getenv('VK_ID'),
-            'secret': os.getenv('VK_SECRET'),
-            'key': os.getenv('VK_KEY')
+            'client_id': '51616311 ',
+            'secret': 'WfcX4LMDmjJvi4yotlXU',
+            'key': '334c071e334c071e334c071e5d305f9d293334c334c071e5777c6772c3f6d3ab0c21f75',
+            # 'client_id': os.getenv('VK_ID'),
+            # 'secret': os.getenv('VK_SECRET'),
+            # 'key': os.getenv('VK_KEY'),
         },
         "SCOPE": ["email"],
         "FIELDS": ['id', 'email', 'first_name', 'last_name']
