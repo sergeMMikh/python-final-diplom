@@ -78,24 +78,30 @@ SITE_ID = 1
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online'
-        },
-    },
-
-    'github': {
-        # 'GITHUB_URL': 'https://github.com/sergeMMikh',
-        'SCOPE': [
-            'user',
-            'repo',
-            'road:org'
-        ],
+    # 'google': {
+    #     'SCOPE': [
+    #         'profile',
+    #         'email',
+    #     ],
+    #     'AUTH_PARAMS': {
+    #         'access_type': 'online'
+    #     },
+    # },
+    #
+    # 'github': {
+    #     # 'GITHUB_URL': 'https://github.com/sergeMMikh',
+    #     'SCOPE': [
+    #         'user',
+    #         'repo',
+    #         'road:org'
+    #     ],
+    # }
+    'vk': {
+        'client_id': '51616311 ',
+        'secret': '334c071e334c071e334c071e5d305f9d293334c334c071e5777c6772c3f6d3ab0c21f75',
+        'key': 'WfcX4LMDmjJvi4yotlXU'
     }
+
 }
 
 MIDDLEWARE = [
