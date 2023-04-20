@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from orders.views import home_view
+from orders.views.views import home_view
 from drf_spectacular.views import SpectacularAPIView
 from commercial_net_service.spectacular.urls import urlpatterns as doc_urls
 

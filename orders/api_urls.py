@@ -2,14 +2,14 @@ from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 
-from orders.bascket_views import BasketView
-from orders.product_views import ProductsList, \
+from orders.views.bascket_views import BasketView
+from orders.views.product_views import ProductsList, \
     ProductsView, SingleProductView, ShopView, ProductInfoViewSet
-from orders.user_views import LoginAccount, RegisterAccount, \
+from orders.views.user_views import LoginAccount, RegisterAccount, \
     ConfirmAccount, ContactViewSet, EditUser, UserEmailVerify, \
     ResetPasswordRequestToken, ResetPasswordConfirm
-from orders.partner_views import PartnerUpdate, PartnerState
-from orders.order_view import OrderView
+from orders.views.partner_views import PartnerUpdate, PartnerState
+from orders.views.order_view import OrderView
 
 app_name = 'orders'
 router = DefaultRouter()
